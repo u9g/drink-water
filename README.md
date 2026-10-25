@@ -2,7 +2,7 @@
 
 An hourly macOS reminder to drink water, delivered as a Telegram message.
 
-A launchd agent runs `drink-water` every hour; the script sends a message through a Telegram bot.
+A launchd agent runs `drink-water` every hour; the script sends a message through a Telegram bot, except between 8 p.m. and 9 a.m. in the system's local time zone.
 
 ## Setup
 
