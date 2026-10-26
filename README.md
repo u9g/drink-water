@@ -2,7 +2,7 @@
 
 An hourly macOS reminder to drink water, delivered as a Telegram message.
 
-A launchd agent runs `drink-water` every hour; the script sends a message through a Telegram bot, except between 8 p.m. and 9 a.m. in the system's local time zone.
+A launchd agent runs `drink-water` every hour; the program sends a message through a Telegram bot, except between 8 p.m. and 9 a.m. in the system's local time zone.
 
 ## Setup
 
@@ -11,12 +11,12 @@ A launchd agent runs `drink-water` every hour; the script sends a message throug
    ```sh
    curl -s "https://api.telegram.org/bot<TOKEN>/getUpdates" | grep -o '"chat":{"id":[0-9-]*'
    ```
-3. Install the config, script and launchd agent:
+3. Install the config, binary and launchd agent:
    ```sh
-   mkdir -p ~/.config/drink-water ~/.local/bin
+   mkdir -p ~/.config/drink-water
    cp env.example ~/.config/drink-water/env    # fill in TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID
    chmod 600 ~/.config/drink-water/env
-   cp drink-water ~/.local/bin/
+   cargo install --path . --root ~/.local
    cp com.u9g.drink-water.plist ~/Library/LaunchAgents/
    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.u9g.drink-water.plist
    ```
