@@ -1,9 +1,0 @@
-#!/bin/sh
-# Requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in ~/.config/drink-water/env.
-# Silent from 20:00 to 09:00 in the system's local time zone.
-hour=$(date +%H)
-[ "$hour" -ge 20 ] || [ "$hour" -lt 9 ] && exit 0
-. "$HOME/.config/drink-water/env"
-curl -fsS "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
-  -d chat_id="$TELEGRAM_CHAT_ID" \
-  --data-urlencode text="💧 Drink some water — it's been an hour. Go drink a glass of water." >/dev/null
